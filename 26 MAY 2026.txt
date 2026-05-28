@@ -1,0 +1,1667 @@
+> use vitcampus
+< switched to db vitcampus
+show dbs
+
+< admin
+
+config
+
+db
+
+local
+
+> use admin
+
+< switched to db admin
+
+> show collections
+
+< system.version
+> show collections
+
+< system.version
+>db.createCollection("Employee")
+< { ok: 1 }
+> show collections
+< Employee
+system.version
+> db. Employee. insertMany ([{name:'Emp1',address:"Pune"} , {name: 'Emp2' , address: "Hyderabad"} ])
+
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a15958692887efa159ab0d9'),
+'1': ObjectId('6a15958692887efa159ab0da')
+
+40.00 KiB
+
+72.00 KiB
+
+80.00 KiB
+
+80.00 KiB
+
+> db.Employee. find.pretty()
+" TypeError: db.Employee. find.pretty is not a function
+> db. Employee. find() .pretty()
+_id: ObjectId('6a15958692887efa159ab0d9'),
+name: 'Emp1',
+
+address: 'Pune'
+
+{
+
+_id: ObjectId('6a15958692887efa159ab0da'),
+name: 'Emp2',
+
+address: 'Hyderabad'
+
+> // comment
+> db.createCollection("Books")
+< { ok: 1 }
+> db. Books . insertone ( {})
+" TypeError: db.Books. insertone is not a function
+> db. Books . insertOne ({
+title: 'Mongo DB Insertion',
+})
+
+acknowledged: true,
+insertedId: ObjectId('6a1597fd92887efa159ab0db')
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+db.products.find().pretty()
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  releaseDate: 2011-05-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 6.5,
+    cpu: 2.66
+  },
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    64,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  releaseDate: 2011-09-01T00:00:00.000Z,
+  spec: {
+    ram: 16,
+    screen: 9.5,
+    cpu: 3.66
+  },
+  color: [
+    'white',
+    'black',
+    'purple'
+  ],
+  storage: [
+    128,
+    256,
+    512
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  releaseDate: 2015-01-14T00:00:00.000Z,
+  spec: {
+    ram: 12,
+    screen: 9.7,
+    cpu: 3.66
+  },
+  color: [
+    'blue'
+  ],
+  storage: [
+    16,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  releaseDate: 2020-05-14T00:00:00.000Z,
+  spec: {
+    ram: 8,
+    screen: 9.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  releaseDate: 2022-09-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 5.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256
+  ]
+}
+db.products.find({_id:5},{name:1})
+{
+  _id: 5,
+  name: 'SmartPhone'
+}
+// 1 means true , 0 means false , when I will do {name:0} aal the things other than 0 will come
+db.products.find({_id:5},{name:0})
+{
+  _id: 5,
+  price: 599,
+  releaseDate: 2022-09-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 5.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256
+  ]
+}
+// in case to avoid id everytime in o/p
+db.products.find({_id:5},{name:1._id:0})
+SyntaxError: A numeric separator is only allowed between two digits. (1:33)
+
+> 1 | db.products.find({_id:5},{name:1._id:0})
+    |                                  ^
+db.products.find({_id:5},{name:1,_id:0})
+{
+  name: 'SmartPhone'
+}
+db.products.drop()
+true
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256],"inventory":[{ qty: 1200,"warehouse": "San Jose"}]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512],"inventory":[{ qty: 300,"warehouse": "San Francisco"}]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128],"inventory":[{ qty: 400,"warehouse": "San Jose"},{ qty: 200,"warehouse": "San Francisco"}]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024],"inventory":[{ qty: 1200,"warehouse": "San Mateo"}]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+// prices are same 
+// prices are same , { } empty will consider 
+db.products.find({},{
+  name:1,
+  price:1
+});
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599
+}
+// empty bracket will indicate that it is true everytime , all the values will be printed 
+//_ids will be printed in evry , to stop it we have to do it explicitically
+db.products.find(
+  {},                     
+  { name: 1, "spec.cpu": 1, _id: 0 } 
+)
+{
+  name: 'xPhone',
+  spec: {
+    cpu: 2.66
+  }
+}
+{
+  name: 'xTablet',
+  spec: {
+    cpu: 3.66
+  }
+}
+{
+  name: 'SmartTablet',
+  spec: {
+    cpu: 3.66
+  }
+}
+{
+  name: 'SmartPad',
+  spec: {
+    cpu: 1.66
+  }
+}
+{
+  name: 'SmartPhone',
+  spec: {
+    cpu: 1.66
+  }
+}
+// the above one was for nested 
+db. products. find ({_id:1}, {
+name: 1,
+price: 1,
+spec : { scrden: 1}
+SyntaxError: Unexpected token, expected "," (4:19)
+
+  2 | name: 1,
+  3 | price: 1,
+> 4 | spec : { scrden: 1}
+    |                    ^
+db. products. find ({_id:1}, {
+name: 1,
+price: 1,
+spec : { scrden: 1}
+})
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  spec: {}
+}
+db.products. find({_id:1}, {
+releaseDate: 0,
+spec: 0,
+storage: 0
+})
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  color: [
+    'white',
+    'black'
+  ],
+  inventory: [
+    {
+      qty: 1200,
+      warehouse: 'San Jose'
+    }
+  ]
+}
+db.products.find(
+   {},
+   { name: 1, "storage.1": 1, _id: 0 }
+)
+{
+  name: 'xPhone',
+  storage: []
+}
+{
+  name: 'xTablet',
+  storage: []
+}
+{
+  name: 'SmartTablet',
+  storage: []
+}
+{
+  name: 'SmartPad',
+  storage: []
+}
+{
+  name: 'SmartPhone',
+  storage: []
+}
+db.products.find(
+ {},
+ {
+   name:1,
+   storage:{$slice:[1,1]},
+   _id:0
+ }
+)
+{
+  name: 'xPhone',
+  storage: [
+    128
+  ]
+}
+{
+  name: 'xTablet',
+  storage: [
+    256
+  ]
+}
+{
+  name: 'SmartTablet',
+  storage: [
+    64
+  ]
+}
+{
+  name: 'SmartPad',
+  storage: [
+    256
+  ]
+}
+{
+  name: 'SmartPhone',
+  storage: [
+    256
+  ]
+}
+ 
+ 
+// Operatore -> comparison
+db.products.drop()
+true
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+// for finding black colour
+db.products.find({
+    color: {
+        $eq: "black"
+    }
+}, {
+    name: 1,
+    color: 1
+})
+{
+  _id: 1,
+  name: 'xPhone',
+  color: [
+    'white',
+    'black'
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  color: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+db.products.find({
+    price: {
+        $eq: 899
+    }
+}, {
+    name: 1,
+    price: 1
+})
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899
+}
+db.products.find({
+    "spec.ram": 4
+
+}, {
+    name: 1,
+    "spec.ram": 1
+})
+{
+  _id: 1,
+  name: 'xPhone',
+  spec: {
+    ram: 4
+  }
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  spec: {
+    ram: 4
+  }
+}
+ 
+//$ eq means equal 
+// less than 
+db.products.find({
+    price: {
+        $lt: 799
+    }
+}, {
+    name: 1,
+    price: 1
+})
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599
+}
+db.products.find({
+    storage: {
+        $lt: 128
+    }
+}, {
+    name: 1,
+    storage: 1
+})
+{
+  _id: 1,
+  name: 'xPhone',
+  storage: [
+    64,
+    128,
+    256
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  storage: [
+    16,
+    64,
+    128
+  ]
+}
+db.products.find({})
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  releaseDate: 2011-05-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 6.5,
+    cpu: 2.66
+  },
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    64,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  releaseDate: 2011-09-01T00:00:00.000Z,
+  spec: {
+    ram: 16,
+    screen: 9.5,
+    cpu: 3.66
+  },
+  color: [
+    'white',
+    'black',
+    'purple'
+  ],
+  storage: [
+    128,
+    256,
+    512
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  releaseDate: 2015-01-14T00:00:00.000Z,
+  spec: {
+    ram: 12,
+    screen: 9.7,
+    cpu: 3.66
+  },
+  color: [
+    'blue'
+  ],
+  storage: [
+    16,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  releaseDate: 2020-05-14T00:00:00.000Z,
+  spec: {
+    ram: 8,
+    screen: 9.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  releaseDate: 2022-09-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 9.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256
+  ]
+}
+db.products.find({
+  price:{}
+})
+db.products.find({
+  price:{
+    $lt :499
+  }
+},{
+  name:1
+  price:1
+})
+SyntaxError: Unexpected token, expected "," (7:2)
+
+  5 | },{
+  6 |   name:1
+> 7 |   price:1
+    |   ^
+  8 | })
+db.products.find({
+  price:{
+    $lt :499
+  }
+},{
+  name:1,
+  price:1
+})
+db.products.find({
+  price:{
+    $lt :299
+  }
+},{
+  name:1,
+  price:1
+})
+db.products.find({
+  price:{
+    $lt :299
+  }
+},
+{
+  name:1,
+  price:1
+})
+db.products.find(
+  { "price": { $lt: 800 } },
+  { "name": 1, "price": 1, "_id": 0 } // Added _id: 0 to clean up the output
+)
+{
+  name: 'xPhone',
+  price: 799
+}
+{
+  name: 'SmartPad',
+  price: 699
+}
+{
+  name: 'SmartPhone',
+  price: 599
+}
+db.products.find(
+  { "price": { $gt: 800 } },
+  { "name": 1, "price": 1, "_id": 0 } // Added _id: 0 to clean up the output
+)
+{
+  name: 'xTablet',
+  price: 899
+}
+{
+  name: 'SmartTablet',
+  price: 899
+}
+// greater than and equal to 
+db.products.find(
+  { "price": { "$gte": 799 } },
+  { "name": 1, "price": 1, "_id": 0 }
+)
+{
+  name: 'xPhone',
+  price: 799
+}
+{
+  name: 'xTablet',
+  price: 899
+}
+{
+  name: 'SmartTablet',
+  price: 899
+}
+db.products.find(
+  { "releaseDate": { "$gte": ISODate("2015-01-01") } },
+  { "name": 1, "releaseDate": 1, "_id": 0 }
+)
+{
+  name: 'SmartTablet',
+  releaseDate: 2015-01-14T00:00:00.000Z
+}
+{
+  name: 'SmartPad',
+  releaseDate: 2020-05-14T00:00:00.000Z
+}
+{
+  name: 'SmartPhone',
+  releaseDate: 2022-09-14T00:00:00.000Z
+}
+db.products.find(
+  { "spec.screen": { "$gte": 9.5 } },
+  { "name": 1, "spec.screen": 1, "_id": 0 }
+)
+{
+  name: 'xTablet',
+  spec: {
+    screen: 9.5
+  }
+}
+{
+  name: 'SmartTablet',
+  spec: {
+    screen: 9.7
+  }
+}
+{
+  name: 'SmartPad',
+  spec: {
+    screen: 9.7
+  }
+}
+{
+  name: 'SmartPhone',
+  spec: {
+    screen: 9.7
+  }
+}
+admin
+Selection deleted
+
+
+> db.products. find().pretty()
+
+_id: 1,
+
+name: 'xPhone',
+
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+
+spec: {
+
+ram: 4,
+
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+
+'white',
+
+'black'
+
+],
+storage: [
+64,
+
+128
+
+256
+
+_id: 2,
+
+name: 'xTablet',
+
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+
+spec: {
+
+ram: 16,
+
+screen: 9.5,
+cpu: 3.66
+
+color: [
+
+'white',
+
+'black',
+'purple'
+
+],
+storage: [
+128,
+
+256,
+
+512
+
+id: 3,
+name: 'SmartTablet',
+price: 899,
+
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec:
+ram: 12,
+
+screen: 9.7,
+
+cpu: 3.66
+
+color: [
+
+'blue'
+
+],
+storage: [
+16,
+
+64,
+128
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+
+spec: {
+
+ram: 8,
+
+screen: 9.7,
+cpu: 1.66
+
+},
+
+color: [
+
+'white',
+
+'orange',
+'gold'
+'gray'
+
+storage: [
+128,
+256,
+
+1024
+
+id: 5,
+name: 'SmartPhone',
+
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 5.7,
+
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+gold',
+'gray'
+
+],
+storage: [
+128,
+
+256
+
+> db.products. find({_id:5}, {name:1})
+
+V
+
+_id: 5,
+
+name: 'SmartPhone'
+
+> // 1 means true , 0 means false , when I will do {name:0} aal the things other than 0 will come
+> db.products. find({_id:5}, {name:0})
+
+V
+
+_id: 5,
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+
+spec: {
+ram: 4,
+
+screen: 5.7,
+
+cpu: 1.66
+
+3,
+color: [
+
+'white',
+
+'orange',
+'gold',
+gray'
+
+1,
+storage: [
+128,
+
+256
+
+> // in case to avoid id everytime in o/p
+>db.products.find({_id:5},{name:1 ._ id:0})
+SyntaxError: A numeric separator is only allowed between two digits. (1:33)
+
+> 1 | db.products.find({_id:5}, {name:1 ._ id:0})
+
+>db.products.find({_id:5},{name:1,_id:0})
+
+name: 'SmartPhone'
+
+<
+
+> db.products.drop()
+< true
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256],"inventory":[{ qty: 1200,"warehouse": "San Jose"}]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512],"inventory":[{ qty: 300,"warehouse": "San Francisco"}]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128],"inventory":[{ qty: 400,"warehouse": "San Jose"},{ qty: 200,"warehouse": "San Francisco"}]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024],"inventory":[{ qty: 1200,"warehouse": "San Mateo"}]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+acknowledged: true,
+insertedIds: {
+'0': 1,
+
+'1': 2,
+'2': 3,
+'3': 4,
+'4': 5
+
+> // prices are same
+> // prices are same , { } empty will consider
+> db.products. find({},{
+name: 1,
+
+price:1
+
+});
+
+_id: 1,
+
+name: 'xPhone',
+
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+_id: 4,
+name: 'SmartPad',
+
+price: 699
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+> // empty bracket will indicate that it is true everytime , all the values will be printed
+//_ids will be printed in evry , to stop it we have to do it explicitically
+> db.products. find(
+0,
+{ name: 1, "spec.cpu": 1, _id: 0 }
+
+name: 'xPhone',
+
+spec: {
+cpu: 2.66
+
+name: 'xTablet',
+spec: {
+
+cpu: 3.66
+
+ـلم
+name: 'SmartTablet',
+
+spec: {
+
+cpu: 3.66
+
+name: 'SmartPad',
+
+spec: {
+
+cpu: 1.66
+
+name: 'SmartPhone',
+
+spec: {
+
+cpu: 1.66
+
+> // the above one was for nested
+>db. products. find ({_id:1}, {
+name: 1,
+
+price: 1,
+spec : { scrden: 1}
+" SyntaxError: Unexpected token, expected "," (4:19)
+
+2 | name: 1,
+3 | price: 1,
+> 4 | spec : { scrden: 1}
+>db. products. find ({_id:1}, {
+name: 1,
+
+price: 1,
+spec : { scrden: 1}
+})
+
+_id: 1,
+
+name: 'xPhone',
+
+price: 799,
+spec: {}
+
+>db.products. find({_id:1}, {
+releaseDate: 0,
+
+spec: 0,
+
+storage: 0
+
+_id: 1,
+name: 'xPhone',
+price: 799,
+color: [
+
+'white',
+
+'black'
+
+1,
+inventory: [
+
+qty: 1200,
+warehouse: 'San Jose'
+> db.products.find(
+{,
+{ name: 1, "storage.1": 1, _id: 0}
+
+name: 'xPhone',
+
+storage: []
+
+name: 'xTablet',
+
+storage: []
+
+name: 'SmartTablet',
+
+storage: []
+
+}
+
+name: 'SmartPad',
+
+storage: []
+
+}
+
+{
+
+name: 'SmartPhone',
+
+storage: []
+
+> db.products. find(
+
+name: 1,
+storage: {$slice: [1,1]},
+_id:0
+
+}
+
+name: 'xPhone',
+
+storage: [
+
+128
+
+name: 'xTablet',
+
+storage: [
+
+256
+
+{
+
+name: 'SmartTablet',
+storage: [
+
+64
+
+name: 'SmartPad',
+
+storage: [
+
+256
+
+
+name: 'SmartPhone',
+
+name: 'SmartPhone',
+storage:
+256
+
+A
+
+> // Operatore -> comparison
+> db.products.drop()
+< true
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+
+acknowledged: true,
+insertedIds: {
+
+'0': 1,
+
+'1': 2,
+'2': 3,
+'3': 4,
+
+'4': 5
+
+> // for finding black colour
+> db.products. find({
+color: {
+
+$eq: "black"
+
+}, {
+name: 1,
+
+color: 1
+
+_id: 1,
+name: 'xPhone',
+
+color: [
+'white',
+'black'
+
+_id: 2,
+name: 'xTablet',
+
+color: [
+
+'white',
+
+'black',
+
+' purple'
+
+> db.products. find({
+price: {
+$eq: 899
+
+}, {
+
+name: 1,
+
+price: 1
+
+})
+
+V
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+id: 3,
+name: 'SmartTablet',
+price: 899
+
+> db.products. find({
+"spec.ram": 4
+
+3, {
+> db.products. find({
+"spec.ram": 4
+
+}, {
+name: 1,
+
+"spec.ram": 1
+
+})
+
+_id: 1,
+name: 'xPhone',
+
+spec: {
+
+ram: 4
+
+{
+
+_id: 5,
+name: 'SmartPhone',
+spec: {
+
+ram: 4
+
+A
+
+> //$ eq means equal
+> // less than
+> db.products. find({
+price: {
+$lt: 799
+
+3, {
+name: 1,
+
+price: 1
+
+})
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+
+id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+>db. products. find ({
+storage: {
+$lt: 128
+
+3, {
+name: 1,
+
+storage: 1
+
+})
+
+_id: 1,
+name: 'xPhone',
+
+storage: [
+
+64,
+
+128,
+
+256
+
+1
+id: 3,
+name: 'SmartTablet',
+storage: [
+
+16,
+
+64,
+
+128
+
+> db.products. find({})
+
+_id: 1,
+name: 'xPhone',
+
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+
+spec: {
+
+ram: 4,
+
+screen: 6.5,
+
+cpu: 2.66
+
+v
+
+color: [
+
+'white',
+
+'black'
+
+],
+
+storage: [
+
+64,
+
+128,
+
+256
+id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+
+spec: {
+
+ram: 16,
+
+screen: 9.5,
+
+cpu: 3.66
+
+},
+color: [
+
+'white',
+
+'black',
+
+' purple'
+
+storage: [
+128,
+256,
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+
+ram: 12,
+
+screen: 9.7,cpu: 3.66
+
+3,
+
+color: [
+'blue'
+
+1,
+
+storage: [
+
+16,
+
+64,
+
+128
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699,
+
+releaseDate: 2020-05-14T00:00:00.000Z,
+
+spec: {
+
+ram: 8,
+
+screen: 9.7,
+
+cpu: 1.66
+
+color: [
+
+'white',
+
+'orange',
+'gold'
+'gray'
+
+storage: [
+128,
+256,
+
+1024
+
+id: 5,
+name: 'SmartPhone',
+price: 599,
+
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 9.7,
+
+cpu: 1.66
+
+3,
+
+color: [
+
+'white',
+
+'orange',
+
+'gold',
+'gray'
+
+],
+
+storage: [
+128,
+
+256
+
+> db.products. find({
+price: {}
+
+> db.products. find({
+price: {}
+})
+
+> db.products. find({
+price:{
+
+$lt :499
+
+name : 1
+
+price:1
+
+})
+
+" SyntaxError: Unexpected token, expected "," (7:2)
+
+5 |},{
+
+6 |
+
+> 7 |
+
+name: 1
+
+price:1
+
+8 |})
+> db.products. find ({
+price:{
+
+$lt :499
+
+name:1,
+
+price:1
+
+V
+
+> db.products. find({
+ice.I
+> db.products. find({
+price: {
+$lt :299
+
+name : 1,
+
+price:1
+
+V
+
+> db.products. find({
+price:{
+$lt :299
+
+3,
+
+V
+
+name: 1,
+
+price:1
+})
+
+> db.products. find(
+{ "price": { $lt: 800 } },
+{ "name": 1, "price": 1, "_id": 0 } // Added _id: 0 to clean up the output
+
+)
+
+name: 'xPhone',
+
+price: 799
+
+{
+
+name: 'SmartPad',
+price: 699
+name: 'SmartPhone',
+
+price: 599
+
+> db.products. find(
+{ "price": { $gt: 800 } },
+{ "name": 1, "price": 1, "_id": 0 } // Added _id: 0 to clean up the output
+
+name: 'xTablet',
+
+price: 899
+
+{
+
+name: 'SmartTablet',
+
+price: 899
+
+> // greater than and equal to
+> db.products. find(
+{ "price": { "$gte": 799 } },
+{ "name": 1, "price": 1, "_id": 0 }
+
+)
+
+name: 'xPhone',
+price: 799
+
+name: 'xTablet',
+
+price: 899
+name: 'SmartTablet',
+
+price: 899
+
+> db.products. find(
+{ "releaseDate": { "$gte": ISODate("2015-01-01") } },
+{ "name": 1, "releaseDate": 1, "_id": 0 }
+
+)
+
+name: 'SmartTablet',
+releaseDate: 2015-01-14T00:00:00.000Z
+
+{
+
+name: 'SmartPad',
+
+releaseDate: 2020-05-14T00:00:00.000Z
+
+name: 'SmartPhone',
+
+releaseDate: 2022-09-14T00:00:00.000Z
+
+> db.products. find(
+{ "spec.screen": { "$gte": 9.5 } },
+{ "name": 1, "spec.screen": 1, "_id": 0 }
+
+)
+<{
+
+name: 'xTablet',
+
+spec: {
+
+screen: 9.5
+> db.products. find(
+{ "spec.screen": { "$gte": 9.5 } },
+{ "name": 1, "spec.screen": 1, "_id": 0 }
+
+)
+
+name: 'xTablet',
+
+spec: {
+
+screen: 9.5
+
+{
+
+name: 'SmartTablet',
+
+spec: {
+
+screen: 9.7
+
+{
+
+name: 'SmartPad',
+
+spec: {
+
+screen: 9.7
+
+name: 'SmartPhone',
+
+spec: {
+
+screen: 9.7
+
+admin>

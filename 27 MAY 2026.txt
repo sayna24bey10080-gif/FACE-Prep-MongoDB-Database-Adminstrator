@@ -1,0 +1,815 @@
+use vitcampus
+switched to db vitcampus
+shoe
+ReferenceError: shoe is not defined
+show cll
+MongoshInvalidInputError: [COMMON-10001] 'cll' is not a valid argument for "show".
+show collections
+db.createCollection("products")
+{ ok: 1 }
+db.products.insertMany([
+    { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]},
+    { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]},
+    { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128]},
+    { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024]},
+    { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+ ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+//The $gte is a comparison query operator that allows you to select documents where a value of a field is greater than or equal to ( i.e. >=) a specified value.
+//The $gte operator has the following syntax:
+//{field: {$gte: value} }
+// greater than pr equal to example 
+//field greater than or equal to specified value
+db.products.find({})
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  releaseDate: 2011-05-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 6.5,
+    cpu: 2.66
+  },
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    64,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  releaseDate: 2011-09-01T00:00:00.000Z,
+  spec: {
+    ram: 16,
+    screen: 9.5,
+    cpu: 3.66
+  },
+  color: [
+    'white',
+    'black',
+    'purple'
+  ],
+  storage: [
+    128,
+    256,
+    512
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  releaseDate: 2015-01-14T00:00:00.000Z,
+  spec: {
+    ram: 12,
+    screen: 9.7,
+    cpu: 3.66
+  },
+  color: [
+    'blue'
+  ],
+  storage: [
+    16,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  releaseDate: 2020-05-14T00:00:00.000Z,
+  spec: {
+    ram: 8,
+    screen: 9.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  releaseDate: 2022-09-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 5.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256
+  ]
+}
+db.products.find(
+  price:{
+    $gte:799
+  }
+),{
+  name:1,
+  price:1
+}
+SyntaxError: Unexpected token, expected "," (2:7)
+
+  1 | db.products.find(
+> 2 |   price:{
+    |        ^
+  3 |     $gte:799
+  4 |   }
+  5 | ),{
+db.products.find({
+    price: {
+        $gte: 799
+    }
+}, {
+    name: 1,
+    price: 1
+})
+
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799
+}{
+  _id: 2,
+  name: 'xTablet',
+  price: 899
+}{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899
+}
+// $gte operator to check if a field in an embedded document is greater than or equal to a value
+> db.products. find({
+"spec. screen": {
+$gte: 9.5
+
+}, {
+name: 1,
+
+"spec.screen": 1
+
+_id: 2,
+
+name: 'xTablet',
+
+spec: {
+
+screen: 9.5
+
+_id: 3,
+name: 'SmartTablet',
+
+spec: {
+
+screen: 9.7
+
+Lid: 4,
+name: 'SmartPad',
+spec: {
+
+screen: 9.7
+// $gte operator to check if an array element is greater than or equal to a value
+db.products.find({
+    storage: {
+        $gte: 512
+    }
+}, {
+    name: 1,
+    storage: 1
+})
+_id: 2,
+name: 'xTablet',
+storage: [
+128,
+
+256
+
+51
+
+_id: 4,
+name: 'SmartPad',
+
+storage: [
+
+128,
+
+256
+
+1024
+
+> //Using the $gte operator to check if a field is after or on the same date
+> db.products. find({
+"releaseDate": {
+$gte: new ISODate('2020-85-14')
+
+1, {
+name: 1,
+releaseDate: 1
+
+id: 4,
+name: 'SmartPad',
+
+releaseDate: 2020-05-14T00:00:00.000Z
+
+id: 5,
+name: 'SmartPhone',
+releaseDate: 2022-09-14T00:00:00.000Z
+
+> //Not equal to
+>// Using the $ne operator to select documents where the value of a field is greater than a specified value
+> db.products. find({
+price: {
+$ne: 899
+
+1, {
+name: 1,
+
+price: 1
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+id: 4,
+name: 'SmartPad',
+
+price: 699
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+> // Using the $ne operator to check if a field in an embedded document is not equal to a value
+> db.products. find({
+"spec.screen": {
+$ne: 9.7
+
+name: 1,
+
+"spec.screen": 1
+
+_id: 1,
+name: 'xPhone'
+
+spec: {
+
+screen: 6.5
+
+_id: 2,
+name: 'xTablet',
+
+spec: {
+screen: 9.5
+
+_id: 5,
+name: 'SmartPhone' ,
+
+spec: {
+screen: 5.7
+
+> // $ne operator to check if an array element is not equal to a value
+> db.products.find({
+storage: {
+$ne: 128
+
+1, {
+name: 1,
+storage: 1
+
+>// Using the $ne operator to check if the value of a field is not equal to a date
+>db.products. find({
+releaseDate: {
+$ne: new ISODate('2015-01-14')
+
+1,
+
+name: 1
+
+releaseDate: 1
+
+id: 1,
+
+name: 'xPhone',
+releaseDate: 2011-05-14T00:00:00.000Z
+
+1d: 2,
+
+name: 'xTab let'
+
+releaseDate: 2011-09-@1T00:00:00.000Z
+
+_1d: 4,
+
+name: 'SmartPad',
+
+releaseDate: 2020-05-14T00:00:00.000Z
+
+id: 5,
+name: 'SmartPhone'
+
+releaseDate: 2022-09-14T00:00:00.000Z
+
+> // In operator
+>//syntax: { field: { $in: [<value1>, <value2>, ... ] }}
+>/* If the field holds a single value, then the $in operator selects documents where the value of the field is equal to any value such as <value1>, <value2>.
+In case the field holds an array, the $in operator selects documents where the array contains at least one element that equals any value (<valuel>, <valuez>).
+The value list <value1>, <value2>, etc., can be a list of literal values or regular expressions .* /
+> // $in operator to select documents from the products collection whose the price is either 599 or 799
+> db.products. find({
+price: {
+$in: [699, 799]
+
+name: 1
+
+price: 1
+
+id: 1,
+name: 'xPhone'
+price: 799
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699
+
+//Using the $in operator to match values in an array
+> db.products.find({
+color: {
+$in: ["black", "white"]
+
+1, {
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: [
+
+'white',
+'black'
+
+1
+
+_id: 2,
+name: 'xTablet',
+color: [
+'white',
+
+'black',
+'purple'
+
+_id: 4,
+name: 'SmartPad',
+color: [
+'white',
+'orange',
+'gold',
+gray
+
+_id: 5,
+name: 'SmartPhone',
+color: [
+'white',
+
+'orange' ,
+'gold',
+gray'
+
+>//Using the $in operator with regular expressions
+> db.products.find({
+color: {
+$in: [/^g+/, /^w+/]
+
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: [
+'white',
+'black'
+
+_id: 2,
+name: 'xTablet',
+color: [
+'white' ,
+'black',
+'purple'
+
+_id: 4,
+name: 'SmartPad',
+color: [
+'white',
+
+'orange' ,
+'gold',
+'gray'
+
+_id: 5,
+name: 'SmartPhone',
+color: [
+'white',
+'orange' ,
+'gold',
+'gray'
+
+> /*The $nin is a query comparison operator that allows you to find documents where:
+the value of the field is not equal to any value in an array
+or the field does not exist.
+{ field: { $nin: [ <valuel>, <value2> ... ]} }
+*/
+> //$nin operator to select documents from the products collection whose price is neither 599 or 799
+> db.products. find({
+price: {
+$nin: [699, 799]
+
+1, 0
+name: 1,
+price: 1
+_id: 2,
+
+name: 'xTablet',
+
+price: 899
+
+_id: 3
+'SmartTablet'
+
+price: 899
+
+name:
+
+_id: 5,
+
+'SmartPhone'
+name :
+
+price: 599
+
+//Using the MongoDB $nin operator to match values in an array
+db.products. find({
+color: {
+$nin: ["black", "white"]
+
+name: 1,
+
+color: 1
+
+id: 3
+
+name: 'SmartTablet',
+color: [
+'blue'
+
+> // Using the MongoDB $nin operator with regular expressions
+db.products. find({
+color: {
+$nin: [/^g+/, /^w+/]
+
+1, {
+name: 1,
+
+color: 1
+
+_id: 3,
+name: 'SmartTablet',
+color: [
+'blue'
+
+1
+
+>/*The $and is a logical query operator that allows you to carry a logical AND operation on an array of one or more expressions.
+
+$and :[{expression1}, {expression2}, ... ]
+> /*Implicit AND operator
+When you use a comma-separated list of expressions, MongoDB will carry an implicit AND operation:
+{ field: { expression1, expression2, ... }
+
+> db.products. find({
+$and: [{
+price: 899
+1, {
+color: {
+$in: ["white", "black"]
+
+1,0
+name: 1,
+price: 1,
+color: 1
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+color: [
+'white',
+'black',
+'purple'
+
+> db.products. find({
+$and: [{
+price: 699
+
+price: {
+$exists: true
+
+name: 1,
+
+price: 1,
+color: 1
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699,
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+]
+}
+db.products. find({
+price: {
+$eq: 699,
+$exists: true
+
+name: 1,
+price: 1,
+
+color: 1
+
+_id: 4,
+
+name: 'SmartPad',
+price: 699,
+
+color: [
+
+white'
+
+'orange'
+
+"gold',
+
+'gray'
+
+>// usinh implicit and operator
+db.products. find({
+price: {
+$eq: 699,
+$exists: true
+
+name: 1,
+
+price: 1,
+color: 1
+
+id: 4,
+
+name: 'SmartPad',
+
+price: 699,
+
+color: [
+
+white'
+
+'orange',
+
+"gold',
+
+"gray'
+
+1
+
+> /*The $or is a logical query operator that carries a logical OR operation on an array of one or more expressions and selects the documents that satisfy at least one expression.
+$or: [{expression1}, {expression2}, ... ]
+
+db.products. find({
+$or: [
+price: 799
+
+}, {
+price: 899
+
+1, {
+name: 1,
+price: 1
+
+_id: 1,
+name: 'xPhone',
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+> db.products.find({
+price: {
+$in: [799, 899]
+
+1,{
+name: 1,
+
+price: 1
+
+1)
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+_id: 2,
+name: 'xTablet',
+
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+> //Sor operator to select documents where the value of a field is in a range
+> db.products.find({
+$or: [
+{ price: {$lt: 699} },
+{ price: {$gt: 799} }
+
+1, {
+name: 1,
+price: 1
+
+1)
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+>/*{ field: { $not: { <expression> } } }
+
+> db.products.find({
+price: {
+$not: {
+$gt: 699
+
+1,0
+name: 1,
+
+price: 1
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+> db.products. find({
+price: {
+$lte: 699
+
+1, {
+name: 1,
+
+price: 1
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+id: 5,
+
+name: 'SmartPhone'
+price: 599
+
+db.products. find({
+name: {
+$not: /^Smart+/
+
+name: 1
+
+id: 1,
+
+name: 'xPhone'
+
+id: 2,
+
+name: 'xTablet'
+
+> //The syntax of the $nor operator is as follows:
+//{ $nor: [ { <expression1> }, { <expression2> }, ... ] }
+db.products.drop()
+true
+
+> db.createCollection
+[Function: createCollection] AsyncFunction {
+apiVersions: [ 1, Infinity ],
+returnsPromise: true,
+serverVersions: [ '0.0.0', '999.999.999' ],
+topologies: [ 'ReplSet', 'Standalone', 'Sharded', 'LoadBalanced' ],
+returnType: { type: 'unknown', attributes: { },
+deprecated: false,
+platforms: [ 'Compass', 'Browser', 'CLI' ],
+isDirectShellCommand: false,
+
+acceptsRawInput: false,
+shellCommandCompleter: undefined,
+newShellCommandCompleter: undefined,
+help: [Function (anonymous)] Help
+
+> db.createCollection("products")
+< { ok: 1 }
+db.products. insertMany ([
+{ "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate" : ISODate("2011-05-14T00:00:00Z"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 }, "color" : [ "white", "black" ], "storage" : [ 64, 128, 256 ] },
+{ "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate" : ISODate("2011-09-01T00:00:00Z"), "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 }, "color" : [ "white", "black", "purple" ], "storage" : [ 128, 256, 512 ] },
+{ "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate" : ISODate("2015-01-14T00:00:00Z"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 }, "color" : [ "blue" ], "storage" : [ 16, 64, 128 ] },
+{ "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate" : ISODate("2020-05-14T00:00:00Z"), "spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 }, "color" : [ "white", "orange", "gold", "gray" ], "storage" : [ 128, 256, 1024 ] },
+{ "_id" : 5, "name" : "SmartPhone", "price" : 599, "releaseDate" : ISODate("2022-09-14T00:00:00Z"), "spec" : { "ram" : 4, "screen" : 9.7, "cpu" : 1.66 }, "color" : [ "white", "orange", "gold", "gray" ], "storage" : [ 128, 256 ] },
+{ "_id" : 6, "name" : "xWidget", "spec" : { "ram" : 64, "screen" : 9.7, "cpu" : 3.66 }, "color" : [ "black" ], "storage" : [ 1024 ] }
+
+acknowledged: true,
+insertedIds: {
+acknowledged: true,
+insertedIds: {
+'0': 1,
+'1': 2,
+'2': 3,
+'3': 4,
+'4': 5,
+'5': 6
+
+> db.products.find({
+$nor :[
+{ price: 899],
+{ color: "gold"}
+
+1,0
+name: 1,
+
+price: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+price: 799,
+color: [
+'white',
+'black'
+
+1
+
+_id: 6,
+name: 'xWidget',
+color: [
+'black'
+
+vitcampus >
